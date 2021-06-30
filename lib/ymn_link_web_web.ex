@@ -30,6 +30,7 @@ defmodule YmnLinkWebWeb do
   def view do
     quote do
       use Phoenix.View,
+        pattern: "**/*",
         root: "lib/ymn_link_web_web/templates",
         namespace: YmnLinkWebWeb
 
