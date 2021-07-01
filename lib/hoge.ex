@@ -9,7 +9,7 @@ defmodule Hoge do
   ## Examples
 
       iex> Hoge.hello()
-      :world
+      :world1
 
   """
   def hello do
