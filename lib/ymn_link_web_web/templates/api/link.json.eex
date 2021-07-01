@@ -1,0 +1,3 @@
+msg = Hoge.hello()
+%{ "sample" => :ok, "params": @params }
+{:ok, msg}
