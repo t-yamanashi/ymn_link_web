@@ -43,7 +43,8 @@ defmodule YmnLinkWeb.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:shotrize ,git: "https://github.com/piacerex/shotrize.git", branch: "v1.0"},
-      {:circuits_uart, "~> 1.3"}
+      {:circuits_uart, "~> 1.3"},
+      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false}
     ]
   end
 
