@@ -41,7 +41,7 @@ defmodule YmnLinkWeb.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
       {:shotrize ,git: "https://github.com/piacerex/shotrize.git", branch: "v1.0"},
       {:circuits_uart, "~> 1.3"}
     ]
