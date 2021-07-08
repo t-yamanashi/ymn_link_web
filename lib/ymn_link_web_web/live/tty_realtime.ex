@@ -29,7 +29,7 @@ defmodule YmnLinkWebWeb.TtyRealtime do
     {:noreply, assign(socket, v: v)}
   end
   def handle_info( {:submit, v}, socket ) do
-    t = Tty.send("a0;")
+    t = Tty.send("z;")
     results = [%{abc: t}, %{abc: DateTime.utc_now}]
     { :noreply, assign(socket, results: results)}
   end
