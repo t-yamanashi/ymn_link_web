@@ -1,12 +1,10 @@
 defmodule YmnLinkWebWeb.TtyRealtime do
   use YmnLinkWebWeb, :live_view
 
-
   @impl true
   def mount(_params, _session, socket) do
     { :ok, assign(socket, results: [])}
   end
-
 
   @impl true
   def handle_event("change", %{"v" => v }, socket ) do
