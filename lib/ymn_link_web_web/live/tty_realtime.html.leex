@@ -1,17 +1,5 @@
-<script>
-  function st(){
-    var hoge = document.getElementById("hoge");
-    hoge.click();
-    setTimeout("st()", 100);
-  }
-</script>
-
- <form>
- <input type="button" phx-hook="Hoge" id="hoge" style="display:none" >
- <input type="button"  value="Start" onclick="st()">
-</form>
 <section>
 <%= for result <- @results do %>
-  <%= result[:abc] %><br>
+  <%= result[:value] %><br>
 <% end %>
 </section>
