@@ -7,7 +7,7 @@ defmodule YmnLinkWebWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_ymn_link_web_key",
-    signing_salt: "pow+6jwo"
+    signing_salt: "PpWL6Q2B"
   ]
 
   socket "/socket", YmnLinkWebWeb.UserSocket,

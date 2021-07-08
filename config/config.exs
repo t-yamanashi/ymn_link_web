@@ -10,10 +10,10 @@ use Mix.Config
 # Configures the endpoint
 config :ymn_link_web, YmnLinkWebWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "sAN9qz+hddOUcCVWAhbxGMsETSmrGoBYEG9v06GjqyxxxeQbf+rJYnzco3z/448N",
+  secret_key_base: "S/gbf94yKDjRHmBfEXEnVmYgsabvAy5q1Ruw6wjr0ZPHc9qATv9F0dS0ZbJSrF5P",
   render_errors: [view: YmnLinkWebWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: YmnLinkWeb.PubSub,
-  live_view: [signing_salt: "AqRzwOuA"]
+  live_view: [signing_salt: "yMttOhvh"]
 
 # Configures Elixir's Logger
 config :logger, :console,
