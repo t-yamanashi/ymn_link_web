@@ -36,6 +36,7 @@ defmodule YmnLinkWebWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    live "/tty", TtyRealtime
   end
 
   # Other scopes may use custom stacks.
