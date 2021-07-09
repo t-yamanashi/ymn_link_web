@@ -1,5 +1,5 @@
 <section>
 <%= for result <- @results do %>
-  <div style="background-color:#AAAAFF;width:<%=result[:value] %>px;"> <%=result[:value] %></div>
+  <div style="<%=result[:style] %>"> <%=result[:value] %></div>
 <% end %>
 </section>
