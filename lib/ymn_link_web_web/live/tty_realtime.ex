@@ -12,8 +12,9 @@ defmodule YmnLinkWebWeb.TtyRealtime do
   @impl true
   def handle_info(:tick, socket ) do
     Process.send_after(self(), :tick, 50)
-    t = Tty.send("z;")
-    results = [%{value: t}, %{value: DateTime.utc_now}]
+    results = Tty.send("z;")
+              |> String.split(",")
+              |> Enum.map(fn(x) -> %{value: x} end)
     { :noreply, assign(socket, results: results)}
   end
 
