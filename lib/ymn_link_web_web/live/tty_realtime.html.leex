@@ -1,4 +1,7 @@
 <section>
+  <form phx-change="setdata">
+    <input type="text" name="val" value="<%= @val %>">
+  </form>
 <%= for result <- @results do %>
   <div style="<%=result[:style] %>"> <%=result[:value] %></div>
 <% end %>

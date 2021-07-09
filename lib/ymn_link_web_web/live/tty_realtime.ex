@@ -3,19 +3,34 @@ defmodule YmnLinkWebWeb.TtyRealtime do
 
   @impl true
   def mount(_params, _session, socket) do
-    if connected?(socket) do
-      Process.send_after(self(), :tick, 50)
-    end
-    { :ok, assign(socket, results: [])}
+   val = "00000000000000"
+   if connected?(socket) do
+      Process.send_after(self(), {:tick, val}, 50)
+   end
+    { :ok, assign(socket, results: [], val: val)}
   end
 
   @impl true
-  def handle_info(:tick, socket ) do
-    Process.send_after(self(), :tick, 50)
+  def handle_info({:tick, val}, socket ) do
+    Process.send_after(self(), {:tick, val}, 50)
+    #val = "000000000000000"
     results = Tty.send("z;")
               |> String.split(",")
               |> Enum.map(fn(x) -> create_data(x) end)
-    { :noreply, assign(socket, results: results)}
+    { :noreply, assign(socket, results: results, val: val)}
+  end
+
+  @impl true
+  def handle_event("setdata", %{"val" => val}, socket ) do
+    cmd = if String.length(val) == 14 do
+      "x" <> val <> ";"
+    else 
+      "z;"
+    end
+    results = Tty.send(cmd)
+              |> String.split(",")
+              |> Enum.map(fn(x) -> create_data(x) end)
+    {:noreply, assign(socket, results: results, val: val)}
   end
 
   def create_data(x) do
