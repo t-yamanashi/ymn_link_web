@@ -13,10 +13,7 @@ defmodule YmnLinkWebWeb.TtyRealtime do
   @impl true
   def handle_info({:tick, val}, socket ) do
     Process.send_after(self(), {:tick, val}, 50)
-    #val = "000000000000000"
-    results = Tty.send("z;")
-              |> String.split(",")
-              |> Enum.map(fn(x) -> create_data(x) end)
+    results = send("z;")
     { :noreply, assign(socket, results: results, val: val)}
   end
 
@@ -27,10 +24,14 @@ defmodule YmnLinkWebWeb.TtyRealtime do
     else 
       "z;"
     end
-    results = Tty.send(cmd)
-              |> String.split(",")
-              |> Enum.map(fn(x) -> create_data(x) end)
+    results = send(cmd)
     {:noreply, assign(socket, results: results, val: val)}
+  end
+
+  def send(cmd) do
+    Tty.send(cmd)
+    |> String.split(",")
+    |> Enum.map(fn(x) -> create_data(x) end)
   end
 
   def create_data(x) do
