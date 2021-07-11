@@ -5,7 +5,7 @@ defmodule YmnLinkWebWeb.TtyRealtime do
   def mount(_params, _session, socket) do
    val = "00000000000000"
    if connected?(socket) do
-      Process.send_after(self(), {:tick, val}, 50)
+      Process.send_after(self(), {:tick, val}, 100)
    end
     { :ok, assign(socket, results: [], val: val)}
   end

@@ -16,6 +16,7 @@ defmodule Tty do
     :timer.sleep(100)
     {:ok, ret} = Circuits.UART.read(pid, 10)
     Circuits.UART.close(pid)
+    Circuits.UART.stop(pid)
     ret
   end
 end
