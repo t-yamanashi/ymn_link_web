@@ -3,11 +3,11 @@
     <tr>
       <td style="width:200px;">
         <form>
-          <div phx-update="ignore" style="font-size:20px">
+          <div phx-update="ignore" style="font-size:20px" phx-hook="Send">
             <%= for ch <- 2..13 do %>
               <label for="d<%= ch %>">
                 D<%= ch %>
-                <input type="checkbox" id="d<%= ch %>" phx-hook="Hoge" >
+                <input type="checkbox" id="d<%= ch %>" name="ch">
               </label>
             <% end %>
           </div>

@@ -18,21 +18,25 @@ import topbar from "topbar"
 import {LiveSocket} from "phoenix_live_view"
 
 let Hooks = {}
-Hooks.Hoge = {
+Hooks.Send = {
+	
+	mounted() {
+		let hook = this;
+		var chList = document.getElementsByName("ch");
+		
+		for (var i = 0; i < chList.length; i++) {
+			chList[i].onclick = click;
+		}
 
-    mounted() {
-        var hoge = document.getElementById("d2");
-        let hook = this;
-        hoge.onclick = function() {
-        	var arg = "00";
-        	for (var i = 2; i <= 13; i++) {
-        		var obj = document.getElementById("d" + i);
-       		 	arg += obj.checked ? "1" : "0";
-  	     	}
-
-       		hook.pushEvent("setdata", {val: arg});
-    	}
-    }
+		function click() {
+			var arg = "00";
+			for (var i = 2; i <= 13; i++) {
+				var obj = document.getElementById("d" + i);
+				arg += obj.checked ? "1" : "0";
+			}
+			hook.pushEvent("setdata", {val: arg});
+		}
+	}
 }
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks, params: {_csrf_token: csrfToken}})
