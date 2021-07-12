@@ -17,9 +17,25 @@ import {Socket} from "phoenix"
 import topbar from "topbar"
 import {LiveSocket} from "phoenix_live_view"
 
-let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
-let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
+let Hooks = {}
+Hooks.Hoge = {
 
+    mounted() {
+        var hoge = document.getElementById("d2");
+        let hook = this;
+        hoge.onclick = function() {
+        	var arg = "00";
+        	for (var i = 2; i <= 13; i++) {
+        		var obj = document.getElementById("d" + i);
+       		 	arg += obj.checked ? "1" : "0";
+  	     	}
+
+       		hook.pushEvent("setdata", {val: arg});
+    	}
+    }
+}
+let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
+let liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks, params: {_csrf_token: csrfToken}})
 // Show progress bar on live navigation and form submits
 topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
 window.addEventListener("phx:page-loading-start", info => topbar.show())

@@ -3,18 +3,17 @@ defmodule YmnLinkWebWeb.TtyRealtime do
 
   @impl true
   def mount(_params, _session, socket) do
-   val = "00000000000000"
    if connected?(socket) do
-      Process.send_after(self(), {:tick, val}, 100)
+      Process.send_after(self(), :tick, 100)
    end
-    { :ok, assign(socket, results: [], val: val)}
+    { :ok, assign(socket, results: [])}
   end
 
   @impl true
-  def handle_info({:tick, val}, socket ) do
-    Process.send_after(self(), {:tick, val}, 50)
+  def handle_info(:tick, socket ) do
+    Process.send_after(self(), :tick, 50)
     results = send("z;")
-    { :noreply, assign(socket, results: results, val: val)}
+    { :noreply, assign(socket, results: results)}
   end
 
   @impl true
@@ -25,7 +24,7 @@ defmodule YmnLinkWebWeb.TtyRealtime do
       "z;"
     end
     results = send(cmd)
-    {:noreply, assign(socket, results: results, val: val)}
+    {:noreply, assign(socket, results: results)}
   end
 
   def send(cmd) do
