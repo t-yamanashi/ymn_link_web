@@ -24,7 +24,7 @@ defmodule Tty do
     if pids == [] do
       Process.flag(:trap_exit, true)
       {:ok, pid} = Circuits.UART.start_link
-      Circuits.UART.open(pid, "/dev/ttyUSB0", speed: 115200, active: false)
+      Circuits.UART.open(pid, "/dev/ttyACM0", speed: 115200, active: false)
       pid
     else
       [{pid, _dev}] = pids
