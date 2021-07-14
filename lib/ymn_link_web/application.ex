@@ -6,6 +6,7 @@ defmodule YmnLinkWeb.Application do
   use Application
 
   def start(_type, _args) do
+    Tty.open()
     children = [
       # Start the Telemetry supervisor
       YmnLinkWebWeb.Telemetry,
